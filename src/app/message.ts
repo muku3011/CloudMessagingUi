@@ -1,6 +1,7 @@
-export class SendRequest {
+export class Message {
   to: string;
   notification: Notification;
+  server: string;
 }
 
 export class Notification {

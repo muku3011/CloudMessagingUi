@@ -1,0 +1,27 @@
+<div class="server-container">
+  <h3 class="bd-title" id="addUserTitle">{{addServerKeyTitle}}</h3>
+
+  <form [formGroup]="addServerDetailsForm" (ngSubmit)="addServer()" class="server-container">
+
+    <mat-form-field>
+      <label>
+        <input matInput placeholder="Server API key" formControlName="serverApiKey">
+      </label>
+    </mat-form-field>
+
+    <mat-form-field>
+      <label>
+        <input matInput placeholder="Server request URL" formControlName="serverApiUrl">
+      </label>
+    </mat-form-field>
+
+    <div class="add-user-button">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!addServerDetailsForm.value">Add user</button>
+    </div>
+
+  </form>
+
+  <!--{{addServerDetailsForm.value | json}}-->
+</div>
+
+<app-server-api-table> </app-server-api-table>

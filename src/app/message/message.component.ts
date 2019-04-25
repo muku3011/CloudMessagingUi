@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
 import {HttpHandlerService} from '../http-handler.service';
-import {SendRequest} from '../send-request';
+import {Message} from '../message';
 import {RxFormBuilder} from '@rxweb/reactive-form-validators';
+import {StorageService} from "../storage.service";
+import {ServerDetails, User} from "../user";
 
 @Component({
   selector: 'app-message',
@@ -11,30 +13,38 @@ import {RxFormBuilder} from '@rxweb/reactive-form-validators';
 })
 export class MessageComponent implements OnInit {
 
+  sendMessageTitle = 'Send message';
+
   // For testing JSON requests
   bodyMessage: String = String();
 
-  profileForm = new FormGroup({
+  sendMessageForm = new FormGroup({
     token: new FormControl(''),
     subject: new FormControl(''),
     message: new FormControl('')
   });
+  availableUsers: User[];
+  availableServers: ServerDetails[];
 
-  constructor(private httpHandlerService: HttpHandlerService, private formBuilder: RxFormBuilder) {
+  constructor(private httpHandlerService: HttpHandlerService, private sendMessageFormBuilder: RxFormBuilder, private storageService: StorageService) {
   }
 
   ngOnInit() {
-    const basicSetup: SendRequest = {
+    let messageRequest: Message = {
       notification: {
-        title: 'Daily update',
-        body: 'Your account balance is not sufficient'
+        title: '',
+        body: ''
       },
-      to: ''
+      to: '',
+      server: ''
     };
-    this.profileForm = this.formBuilder.group(basicSetup);
+
+    this.sendMessageForm = this.sendMessageFormBuilder.group(messageRequest);
+    this.availableUsers = this.storageService.userList;
+    this.availableServers = this.storageService.serverApiList;
   }
 
-  onSubmit() {
+  sendMessage() {
     /*
         this.sendRequest.to = '';
         this.notification.title = 'Angular title';
@@ -51,15 +61,20 @@ export class MessageComponent implements OnInit {
       '    "icon": "fcm_push_icon"\n' +
       '  },\n' +
       '  "data": {\n' +
-      '    "hello": "This is a Firebase Cloud Messagin  hbhj g Device Gr new v Message!"\n' +
+      '    "hello": "This is a Firebase Cloud Messaging Device Gr new v Message!"\n' +
       '  },\n' +
       '  "to": ""\n' +
       '}';
 
-    console.log('Request in JSON format : ' + JSON.stringify(this.profileForm.value));
+    const serverDetail: ServerDetails = this.storageService.getServerApiKey(this.sendMessageForm.get('server').value);
+
+    this.sendMessageForm.get('server').disable();
+
+    //console.log('Request in JSON format : ' + JSON.stringify(this.sendMessageForm.value));
 
     // this.httpHandlerService.sendMessage(this.bodyMessage);
-    this.httpHandlerService.sendMessage(this.profileForm.value);
+    this.httpHandlerService.sendMessage(this.sendMessageForm.value, serverDetail.serverApiKey, serverDetail.serverApiUrl);
 
+    this.sendMessageForm.get('server').enable();
   }
 }

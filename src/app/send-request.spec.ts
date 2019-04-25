@@ -1,7 +1,7 @@
-import { SendRequest } from './send-request';
+import { Message } from './message';
 
-describe('SendRequest', () => {
+describe('Message', () => {
   it('should create an instance', () => {
-    expect(new SendRequest()).toBeTruthy();
+    expect(new Message()).toBeTruthy();
   });
 });

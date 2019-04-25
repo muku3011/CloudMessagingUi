@@ -1,3 +1,27 @@
-<p>
-  users works!
-</p>
+<div class="user-container">
+  <h3 class="bd-title" id="addUserTitle">{{addUserTitle}}</h3>
+
+  <form [formGroup]="addUserForm" (ngSubmit)="addUser()" class="user-container">
+
+    <mat-form-field>
+      <label>
+        <input matInput placeholder="User name" formControlName="userName">
+      </label>
+    </mat-form-field>
+
+    <mat-form-field>
+      <label>
+        <input matInput placeholder="Token" formControlName="token">
+      </label>
+    </mat-form-field>
+
+    <div class="add-user-button">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!addUserForm.value">Add user</button>
+    </div>
+
+  </form>
+
+  <!--{{addUserForm.value | json}}-->
+</div>
+
+<app-user-table></app-user-table>

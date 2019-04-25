@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ContactComponent } from './contact.component';
+import { ServerApiTableComponent } from './server-api-table.component';
 
-describe('ContactComponent', () => {
-  let component: ContactComponent;
-  let fixture: ComponentFixture<ContactComponent>;
+describe('ServerApiTableComponent', () => {
+  let component: ServerApiTableComponent;
+  let fixture: ComponentFixture<ServerApiTableComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ContactComponent ]
+      declarations: [ ServerApiTableComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ContactComponent);
+    fixture = TestBed.createComponent(ServerApiTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

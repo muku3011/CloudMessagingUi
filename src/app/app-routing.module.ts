@@ -3,12 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { MessageComponent } from './message/message.component';
 import { UsersComponent } from './users/users.component';
-import { ContactComponent } from './contact/contact.component';
+import { ConfigurationComponent } from './configuration/configuration.component';
 
 const routes: Routes = [
   { path: '', component: MessageComponent },
-  { path: 'users', component: UsersComponent },
-  { path: 'contact', component: ContactComponent },
+  { path: 'management', component: UsersComponent },
+  { path: 'configuration', component: ConfigurationComponent },
 ];
 
 @NgModule({
