@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {RxFormBuilder} from "@rxweb/reactive-form-validators";
-import {User} from "../user";
-import {StorageService} from "../storage.service";
+import {User} from "../../schema/user";
+import {UserService} from "../../service/user/user.service";
 
 @Component({
   selector: 'app-users',
@@ -16,24 +16,25 @@ export class UsersComponent implements OnInit {
 
   addUserForm = new FormGroup({
     userName: new FormControl(''),
-    token: new FormControl('')
+    userToken: new FormControl('')
   });
 
-  constructor(private formBuilder: RxFormBuilder, private storageService: StorageService) {
+  constructor(private formBuilder: RxFormBuilder, private userService: UserService) {
   }
 
   ngOnInit() {
-
     const addUser: User = {
       userName: '',
-      token: ''
+      userToken: ''
     };
+
     this.addUserForm = this.formBuilder.group(addUser);
   }
 
   addUser() {
-    //console.log('Request in JSON format : ' + JSON.stringify(this.addUserForm.value));
-    //this.storageService.getUserList(). userList.push(this.addServerDetailsForm.value)
-    this.storageService.addUser(this.addUserForm.value);
+    this.userService.addUser(this.addUserForm.value).subscribe(data => {
+      // Post doesn't fire if it doesn't get subscribed to
+      console.log(data);
+    });
   }
 }

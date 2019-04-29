@@ -1,0 +1,42 @@
+<div class="message-container">
+  <h3 class="bd-title" id="sendMessageTitle">{{sendMessageTitle}}</h3>
+
+  <form [formGroup]="sendMessageForm" (ngSubmit)="sendMessage()" class="message-container">
+
+    <mat-form-field>
+      <mat-select placeholder="Select user" formControlName="userName">
+        <mat-option *ngFor="let user of availableUsers" [value]="user">
+          {{user}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Select server" formControlName="serverUrl">
+        <mat-option *ngFor="let server of availableServers" [value]="server">
+          {{server}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <label>
+        <input matInput placeholder="Subject" formControlName="title">
+      </label>
+    </mat-form-field>
+
+    <mat-form-field>
+      <label>
+        <textarea matInput placeholder="Message" formControlName="body"></textarea>
+      </label>
+    </mat-form-field>
+
+    <div class="message-button">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!sendMessageForm.value">Send Message</button>
+    </div>
+
+  </form>
+
+
+  <!--{{sendMessageForm.value | json}}-->
+</div>

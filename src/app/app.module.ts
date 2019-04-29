@@ -2,18 +2,19 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {NavComponent} from './nav/nav.component';
-import {UsersComponent} from './users/users.component';
-import {UserTableComponent} from "./users/user-table/user-table.component";
-import {MessageComponent} from './message/message.component';
-import {ConfigurationComponent} from './configuration/configuration.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RxReactiveFormsModule} from '@rxweb/reactive-form-validators'
 import {HttpClientModule} from '@angular/common/http';
 import {MatNativeDateModule} from "@angular/material";
 import {DemoMaterialModule} from "./material.module";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ServerApiTableComponent} from "./configuration/server-api-table/server-api-table.component";
+import {NavComponent} from "./component/nav/nav.component";
+import {MessageComponent} from "./component/message/message.component";
+import {UsersComponent} from "./component/user/users.component";
+import {ServerComponent} from "./component/server/server.component";
+import {UserTableComponent} from "./component/user/user-table/user-table.component";
+import {ServerTableComponent} from "./component/server/server-table/server-table.component";
+
 
 @NgModule({
   declarations: [
@@ -21,9 +22,9 @@ import {ServerApiTableComponent} from "./configuration/server-api-table/server-a
     NavComponent,
     UsersComponent,
     MessageComponent,
-    ConfigurationComponent,
+    ServerComponent,
     UserTableComponent,
-    ServerApiTableComponent,
+    ServerTableComponent,
   ],
   imports: [
     BrowserModule,

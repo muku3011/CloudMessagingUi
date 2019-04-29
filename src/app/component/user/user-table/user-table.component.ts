@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {StorageService} from "../../storage.service";
+import {UserService} from "../../../service/user/user.service";
 
 @Component({
   selector: 'app-user-table',
@@ -9,16 +9,16 @@ import {StorageService} from "../../storage.service";
 export class UserTableComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['userName', 'token'];
+  displayedColumns: string[] = ['userName'];
 
   userDataSource: any;
 
-  constructor(private storageService: StorageService) {
+  constructor(private userService: UserService) {
   }
 
-
   ngOnInit() {
-    this.userDataSource = this.storageService.userList;
+    this.userService.getUser().subscribe(value => this.userDataSource = value);
+
   }
 
 
