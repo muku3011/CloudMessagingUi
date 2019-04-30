@@ -24,7 +24,8 @@
     "rxjs": "6.4.0",
     "tslib": "^1.9.0",
     "web-animations-js": "2.3.1",
-    "zone.js": "~0.8.29"
+    "zone.js": "~0.8.29",
+    "ngx-toastr": "latest"
   },
   "scripts": {
     "ng": "ng",

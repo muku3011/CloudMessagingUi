@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl} from '@angular/forms';
 import {RxFormBuilder} from '@rxweb/reactive-form-validators';
-import {MessageService} from "../../service/message/message.service";
-import {Message} from "../../schema/message";
-import {UserService} from "../../service/user/user.service";
-import {ServerService} from "../../service/server/server.service";
+import {MessageService} from '../../service/message/message.service';
+import {Message} from '../../schema/message';
+import {UserService} from '../../service/user/user.service';
+import {ServerService} from '../../service/server/server.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-message',
@@ -25,20 +26,20 @@ export class MessageComponent implements OnInit {
   availableUsers: String[];
   availableServers: String[];
 
-  constructor(private sendMessageFormBuilder: RxFormBuilder, private messageService: MessageService, private userServer: UserService, private serverService: ServerService) {
+  constructor(private sendMessageFormBuilder: RxFormBuilder, private messageService: MessageService, private userServer: UserService, private serverService: ServerService, private toaster: ToastrService) {
   }
 
   ngOnInit() {
-    let messageRequest: Message = {
+    const messageRequest: Message = {
       userName: '',
       serverUrl: '',
       title: '',
       body: ''
     };
-    this.serverService.getServer().subscribe(data => {
+    this.serverService.getAllServer().subscribe(data => {
       this.availableServers = data;
     });
-    this.userServer.getUser().subscribe(data => {
+    this.userServer.getAllUser().subscribe(data => {
       this.availableUsers = data;
     });
 
@@ -46,8 +47,13 @@ export class MessageComponent implements OnInit {
   }
 
   sendMessage() {
-    this.messageService.sendMessage(this.sendMessageForm.value).subscribe(data => {
-      console.log(data);
-    });
+    this.messageService.sendMessage(this.sendMessageForm.value).subscribe(
+      data => {
+        this.toaster.success('Message sent successfully', 'Success');
+        console.log(data);
+      }, error => {
+        this.toaster.error('Message not sent', 'Error');
+        console.log(error);
+      });
   }
 }

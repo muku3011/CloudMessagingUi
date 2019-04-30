@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
-import {RxFormBuilder} from "@rxweb/reactive-form-validators";
-import {User} from "../../schema/user";
-import {UserService} from "../../service/user/user.service";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {RxFormBuilder} from '@rxweb/reactive-form-validators';
+import {User} from '../../schema/user';
+import {UserService} from '../../service/user/user.service';
+import {UserTableComponent} from './user-table/user-table.component';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-users',
@@ -11,6 +13,7 @@ import {UserService} from "../../service/user/user.service";
 })
 
 export class UsersComponent implements OnInit {
+  @ViewChild(UserTableComponent) userTableComponent: UserTableComponent;
 
   addUserTitle = 'Add user';
 
@@ -19,7 +22,7 @@ export class UsersComponent implements OnInit {
     userToken: new FormControl('')
   });
 
-  constructor(private formBuilder: RxFormBuilder, private userService: UserService) {
+  constructor(private formBuilder: RxFormBuilder, private userService: UserService, private toaster: ToastrService) {
   }
 
   ngOnInit() {
@@ -32,9 +35,14 @@ export class UsersComponent implements OnInit {
   }
 
   addUser() {
-    this.userService.addUser(this.addUserForm.value).subscribe(data => {
-      // Post doesn't fire if it doesn't get subscribed to
-      console.log(data);
-    });
+    this.userService.addUser(this.addUserForm.value).subscribe(
+      data => {
+        this.toaster.success('User added successfully', 'Success');
+        console.log(data);
+      }, error => {
+        this.toaster.error('User not added', 'Error');
+        console.log(error);
+      });
+    this.userTableComponent.getAllUser();
   }
 }

@@ -1,11 +1,33 @@
-<table mat-table [dataSource]="userDataSource" class="mat-elevation-z8">
+<div class="example-container mat-elevation-z8">
+  <table mat-table [dataSource]="userDataSource" class="mat-elevation-z8">
 
-  <!-- Position Column -->
-  <ng-container matColumnDef="userName">
-    <th mat-header-cell *matHeaderCellDef> User name </th>
-    <td mat-cell *matCellDef="let element"> {{element}} </td>
-  </ng-container>
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+      </mat-cell>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+    <ng-container matColumnDef="userName">
+      <mat-header-cell *matHeaderCellDef> User name</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row (click)="selection.toggle(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </table>
+</div>
+
+<div>
+  <button mat-raised-button color="primary" type="submit" (click)="removeSelectedRows()"> Remove User(s)</button>
+</div>
