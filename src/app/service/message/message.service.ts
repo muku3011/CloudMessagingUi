@@ -1,16 +1,16 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {GlobalVariable} from "../../globals";
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
 
-  constructor(private http: HttpClient,) {
+  constructor(private http: HttpClient) {
   }
 
   public sendMessage(message: any) {
-    return this.http.post(GlobalVariable.BASE_API_URL.concat('message'), message);
+    return this.http.post(environment.apiUrl.concat('message'), message);
   }
 }
