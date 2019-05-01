@@ -13,16 +13,12 @@ header {
       margin: 0; padding: 0;
 
       li {
-        float: left;
+        float: right;
 
         a {
           padding: 1.5em;
           text-transform: uppercase;
           font-size: .8em;
-
-          &:hover {
-            background: #8E2BFF;
-          }
         }
       }
     }
