@@ -25,7 +25,8 @@
     "tslib": "^1.9.0",
     "web-animations-js": "2.3.1",
     "zone.js": "~0.8.29",
-    "ngx-toastr": "latest"
+    "ngx-toastr": "latest",
+    "tar": ">=4.4.2"
   },
   "scripts": {
     "ng": "ng",
@@ -55,7 +56,8 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "~3.2.2"
+    "typescript": "~3.2.2",
+    "tar": ">=4.4.2"
   },
   "engines": {
     "node": "10.15.0",
