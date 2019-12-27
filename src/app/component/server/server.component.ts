@@ -12,7 +12,7 @@ import {ToastrService} from 'ngx-toastr';
   styleUrls: ['./server.component.scss'],
 })
 export class ServerComponent implements OnInit {
-  @ViewChild(ServerTableComponent) serverTableComponent: ServerTableComponent;
+  @ViewChild(ServerTableComponent, {static: false}) serverTableComponent: ServerTableComponent;
 
   addServerKeyTitle = 'Add server';
 

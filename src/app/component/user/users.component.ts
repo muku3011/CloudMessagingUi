@@ -13,7 +13,7 @@ import {ToastrService} from 'ngx-toastr';
 })
 
 export class UsersComponent implements OnInit {
-  @ViewChild(UserTableComponent) userTableComponent: UserTableComponent;
+  @ViewChild(UserTableComponent, {static: false}) userTableComponent: UserTableComponent;
 
   addUserTitle = 'Add user';
 
