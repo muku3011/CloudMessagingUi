@@ -1,11 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormControl} from '@angular/forms';
-import {RxFormBuilder} from '@rxweb/reactive-form-validators';
-import {MessageService} from '../../service/message/message.service';
-import {Message} from '../../schema/message';
-import {UserService} from '../../service/user/user.service';
-import {ServerService} from '../../service/server/server.service';
-import {ToastrService} from 'ngx-toastr';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { RxFormBuilder } from '@rxweb/reactive-form-validators';
+import { MessageService } from '../../service/message/message.service';
+import { Message } from '../../schema/message';
+import { UserService } from '../../service/user/user.service';
+import { ServerService } from '../../service/server/server.service';
+import { ToastrService } from 'ngx-toastr';
+import { Server } from 'src/app/schema/server';
+import { User } from 'src/app/schema/user';
 
 @Component({
   selector: 'app-message',
@@ -23,8 +25,8 @@ export class MessageComponent implements OnInit {
     body: new FormControl('')
   });
 
-  availableUsers: String[];
-  availableServers: String[];
+  availableUsers: User[];
+  availableServers: Server[];
 
   constructor(private sendMessageFormBuilder: RxFormBuilder, private messageService: MessageService, private userServer: UserService, private serverService: ServerService, private toaster: ToastrService) {
   }
@@ -50,10 +52,10 @@ export class MessageComponent implements OnInit {
     this.messageService.sendMessage(this.sendMessageForm.value).subscribe(
       data => {
         this.toaster.success('Message sent successfully', 'Success');
-        console.log(data);
+        // console.log(data);
       }, error => {
         this.toaster.error('Message not sent', 'Error');
-        console.log(error);
+        // console.log(error);
       });
   }
 }

@@ -19,7 +19,7 @@
 
     <ng-container matColumnDef="userName">
       <mat-header-cell *matHeaderCellDef> User name</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.userName}} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

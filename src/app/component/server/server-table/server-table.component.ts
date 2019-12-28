@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {ServerService} from '../../../service/server/server.service';
-import {SelectionModel} from '@angular/cdk/collections';
-import {ToastrService} from 'ngx-toastr';
+import { Component, OnInit } from '@angular/core';
+import { ServerService } from '../../../service/server/server.service';
+import { SelectionModel } from '@angular/cdk/collections';
+import { ToastrService } from 'ngx-toastr';
+import { Server } from 'src/app/schema/server';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-server-api-table',
@@ -12,8 +14,8 @@ export class ServerTableComponent implements OnInit {
 
   displayedColumns: string[] = ['select', 'serverUrl'];
 
-  serverDataSource: String[];
-  selection = new SelectionModel<String>(true, []);
+  serverDataSource = new MatTableDataSource<Server>();
+  selection = new SelectionModel<Server>(true, []);
 
   constructor(private serverService: ServerService, private toaster: ToastrService) {
   }
@@ -24,34 +26,35 @@ export class ServerTableComponent implements OnInit {
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.serverDataSource.length;
+    const numRows = this.serverDataSource.data.length;
     return numSelected === numRows;
   }
 
   removeSelectedRows() {
-    console.log(this.selection.selected);
+    // console.log(this.selection.selected);
     this.removeServer(this.selection.selected);
+    this.selection.clear();
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
     this.isAllSelected() ?
       this.selection.clear() :
-      this.serverDataSource.forEach(row => this.selection.select(row));
+      this.serverDataSource.data.forEach(server => this.selection.select(server));
   }
 
   public getAllServer() {
-    this.serverService.getAllServer().subscribe(value => this.serverDataSource = value);
+    this.serverService.getAllServer().subscribe(value => this.serverDataSource.data = value);
   }
 
-  public removeServer(servers: String[]) {
+  public removeServer(servers: Server[]) {
     this.serverService.removeServer(servers).subscribe(data => {
       this.toaster.success('Server(s) removed successfully', 'Success');
-      console.log(data);
+      this.getAllServer();
+      // console.log(data);
     }, error => {
       this.toaster.error('Server(s) not removed', 'Error');
-      console.log(error);
+      // console.log(error);
     });
-    this.getAllServer();
   }
 }

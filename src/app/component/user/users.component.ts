@@ -1,10 +1,10 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {RxFormBuilder} from '@rxweb/reactive-form-validators';
-import {User} from '../../schema/user';
-import {UserService} from '../../service/user/user.service';
-import {UserTableComponent} from './user-table/user-table.component';
-import {ToastrService} from 'ngx-toastr';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { RxFormBuilder } from '@rxweb/reactive-form-validators';
+import { User } from '../../schema/user';
+import { UserService } from '../../service/user/user.service';
+import { UserTableComponent } from './user-table/user-table.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-users',
@@ -13,7 +13,7 @@ import {ToastrService} from 'ngx-toastr';
 })
 
 export class UsersComponent implements OnInit {
-  @ViewChild(UserTableComponent, {static: false}) userTableComponent: UserTableComponent;
+  @ViewChild(UserTableComponent, { static: false }) userTableComponent: UserTableComponent;
 
   addUserTitle = 'Add user';
 
@@ -37,12 +37,13 @@ export class UsersComponent implements OnInit {
   addUser() {
     this.userService.addUser(this.addUserForm.value).subscribe(
       data => {
+        this.userTableComponent.userDataSource.connect();
+        this.userTableComponent.getAllUser();
         this.toaster.success('User added successfully', 'Success');
-        console.log(data);
+        // console.log(data);
       }, error => {
         this.toaster.error('User not added', 'Error');
-        console.log(error);
+        // console.log(error);
       });
-    this.userTableComponent.getAllUser();
   }
 }

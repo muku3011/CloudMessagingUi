@@ -5,16 +5,16 @@
 
     <mat-form-field>
       <mat-select placeholder="Select user" formControlName="userName">
-        <mat-option *ngFor="let user of availableUsers" [value]="user">
-          {{user}}
+        <mat-option *ngFor="let user of availableUsers" [value]="user.userName">
+          {{user.userName}}
         </mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field>
       <mat-select placeholder="Select server" formControlName="serverUrl">
-        <mat-option *ngFor="let server of availableServers" [value]="server">
-          {{server}}
+        <mat-option *ngFor="let server of availableServers" [value]="server.serverUrl">
+          {{server.serverUrl}}
         </mat-option>
       </mat-select>
     </mat-form-field>
