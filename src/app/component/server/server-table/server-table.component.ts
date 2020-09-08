@@ -3,7 +3,7 @@ import { ServerService } from '../../../service/server/server.service';
 import { SelectionModel } from '@angular/cdk/collections';
 import { ToastrService } from 'ngx-toastr';
 import { Server } from 'src/app/schema/server';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-server-api-table',

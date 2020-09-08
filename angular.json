@@ -135,5 +135,8 @@
       }
     }
   },
-  "defaultProject": "MessagingUI"
+  "defaultProject": "MessagingUI",
+  "cli": {
+    "analytics": false
+  }
 }

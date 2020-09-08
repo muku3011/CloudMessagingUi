@@ -5,7 +5,7 @@ import {AppComponent} from './app.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RxReactiveFormsModule} from '@rxweb/reactive-form-validators';
 import {HttpClientModule} from '@angular/common/http';
-import {MatNativeDateModule} from '@angular/material';
+import {MatNativeDateModule} from '@angular/material/core';
 import {DemoMaterialModule} from './material.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NavComponent} from './component/nav/nav.component';
