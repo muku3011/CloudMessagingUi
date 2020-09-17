@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { RxFormBuilder } from '@rxweb/reactive-form-validators';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { MessageService } from '../../service/message/message.service';
 import { Message } from '../../schema/message';
 import { UserService } from '../../service/user/user.service';
@@ -28,7 +27,7 @@ export class MessageComponent implements OnInit {
   availableUsers: User[];
   availableServers: Server[];
 
-  constructor(private sendMessageFormBuilder: RxFormBuilder, private messageService: MessageService, private userServer: UserService, private serverService: ServerService, private toaster: ToastrService) {
+  constructor(private sendMessageFormBuilder: FormBuilder, private messageService: MessageService, private userServer: UserService, private serverService: ServerService, private toaster: ToastrService) {
   }
 
   ngOnInit() {

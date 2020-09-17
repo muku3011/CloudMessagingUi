@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {RxReactiveFormsModule} from '@rxweb/reactive-form-validators';
 import {HttpClientModule} from '@angular/common/http';
 import {MatNativeDateModule} from '@angular/material/core';
 import {DemoMaterialModule} from './material.module';
@@ -31,7 +30,6 @@ import {ToastrModule} from 'ngx-toastr';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    RxReactiveFormsModule,
     MatNativeDateModule,
     DemoMaterialModule,
     HttpClientModule,

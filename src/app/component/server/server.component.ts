@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { RxFormBuilder } from '@rxweb/reactive-form-validators';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ServerService } from '../../service/server/server.service';
 import { Server } from '../../schema/server';
 import { ServerTableComponent } from './server-table/server-table.component';
@@ -21,7 +20,7 @@ export class ServerComponent implements OnInit {
     serverUrl: new FormControl('')
   });
 
-  constructor(private formBuilder: RxFormBuilder, private serverService: ServerService, private toaster: ToastrService) {
+  constructor(private formBuilder: FormBuilder, private serverService: ServerService, private toaster: ToastrService) {
   }
 
   ngOnInit() {
