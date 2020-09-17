@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { RxFormBuilder } from '@rxweb/reactive-form-validators';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { User } from '../../schema/user';
 import { UserService } from '../../service/user/user.service';
 import { UserTableComponent } from './user-table/user-table.component';
@@ -22,7 +21,7 @@ export class UsersComponent implements OnInit {
     userToken: new FormControl('')
   });
 
-  constructor(private formBuilder: RxFormBuilder, private userService: UserService, private toaster: ToastrService) {
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private toaster: ToastrService) {
   }
 
   ngOnInit() {

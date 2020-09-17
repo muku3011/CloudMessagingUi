@@ -3,7 +3,7 @@ import { UserService } from '../../../service/user/user.service';
 import { SelectionModel } from '@angular/cdk/collections';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/schema/user';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-user-table',
