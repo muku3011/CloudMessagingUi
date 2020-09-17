@@ -1,5 +1,5 @@
 {
-  "name": "messaging-ui",
+  "name": "cloud-messaging-ui",
   "version": "1.0.0-SNAPSHOT",
   "private": true,
   "dependencies": {
@@ -28,6 +28,9 @@
     "web-animations-js": "2.3.2",
     "zone.js": "~0.11.1"
   },
+  "com_cloud_messaging": {
+    "mavenArtifactType": "jar"
+  },
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
@@ -35,7 +38,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "postinstall": "ng build --aot --prod",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "install-local": "ng build --prod && npx grunt maven:install"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1001.2",
@@ -46,6 +50,9 @@
     "@types/jasminewd2": "^2.0.8",
     "@types/node": "~14.6.4",
     "codelyzer": "~6.0.0",
+    "grunt": "~1.3.0",
+    "grunt-env": "~1.0.1",
+    "grunt-maven-tasks": "1.4.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.2",
     "karma": "^5.2.2",
