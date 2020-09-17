@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "MessagingUI": {
+    "cloud-messaging-ui": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/MessagingUI",
+            "outputPath": "dist/cloud-messaging-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -61,18 +61,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "MessagingUI:build"
+            "browserTarget": "cloud-messaging-ui:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "MessagingUI:build:production"
+              "browserTarget": "cloud-messaging-ui:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "MessagingUI:build"
+            "browserTarget": "cloud-messaging-ui:build"
           }
         },
         "test": {
@@ -106,7 +106,7 @@
         }
       }
     },
-    "MessagingUI-e2e": {
+    "cloud-messaging-ui-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -115,11 +115,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "MessagingUI:serve"
+            "devServerTarget": "cloud-messaging-ui:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "MessagingUI:serve:production"
+              "devServerTarget": "cloud-messaging-ui:serve:production"
             }
           }
         },
@@ -135,7 +135,7 @@
       }
     }
   },
-  "defaultProject": "MessagingUI",
+  "defaultProject": "cloud-messaging-ui",
   "cli": {
     "analytics": false
   }
