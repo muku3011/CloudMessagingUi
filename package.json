@@ -39,7 +39,7 @@
     "lint": "ng lint",
     "postinstall": "ng build --aot --prod",
     "e2e": "ng e2e",
-    "install-local": "ng build --prod && npx grunt maven:install"
+    "install": "ng build --prod && npx grunt maven:install"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1001.2",
