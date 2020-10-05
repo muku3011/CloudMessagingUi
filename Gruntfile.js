@@ -23,7 +23,7 @@ module.exports = function gruntInit(grunt) {
             deploy: {
                 options: {
                     goal: 'deploy',
-                    url: 'https://maven.pkg.github.com/muku3011/',
+                    url: 'https://maven.pkg.github.com/muku3011/cloud-messaging-ui',
                     repositoryId: 'github'
                   },
                 files: [{
