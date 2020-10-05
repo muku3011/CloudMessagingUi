@@ -38,7 +38,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "install": "npx grunt maven:install",
-    "deploy": "npx grunt maven:install"
+    "deploy": "npx grunt maven:deploy"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1001.2",
