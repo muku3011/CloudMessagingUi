@@ -37,9 +37,10 @@
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "postinstall": "ng build --aot --prod",
+    "preinstall": "ng build --aot --prod",
     "e2e": "ng e2e",
-    "install": "ng build --prod && npx grunt maven:install"
+    "install": "npx grunt maven:install",
+    "deploy": "npx grunt maven:install"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1001.2",

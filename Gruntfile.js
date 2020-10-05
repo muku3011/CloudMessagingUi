@@ -8,7 +8,7 @@ module.exports = function gruntInit(grunt) {
             },
             test: {
                 NODE_ENV: 'test',
-            },
+            }
         },
 
         maven: {
@@ -20,18 +20,30 @@ module.exports = function gruntInit(grunt) {
                 injectDestFolder: false,
             },
 
+            deploy: {
+                options: {
+                    url: 'https://maven.pkg.github.com/muku3011/',
+                    repositoryId: 'github',
+                    classifier: 'sources'
+                  },
+                files: [{
+                    expand: true, cwd: 'dist/cloud-messaging-ui/', src: ['**'], dest: 'static',
+                }]
+            },
+
             install: {
                 options: {
                     goal: 'install',
                 },
                 files: [{
                     expand: true, cwd: 'dist/cloud-messaging-ui/', src: ['**'], dest: 'static',
-                }],
-            },
-        },
+                }]
+            }
+        }
     });
 
     grunt.loadNpmTasks('grunt-env');
     grunt.loadNpmTasks('grunt-maven-tasks');
     grunt.registerTask('mvn:intall', 'maven:install');
+    grunt.registerTask('mvn:deploy', 'maven:deploy');
 };
