@@ -8,16 +8,20 @@ import { User } from 'src/app/schema/user';
 })
 export class UserService {
 
+  private readonly apiUrl: string;
+
   constructor(private http: HttpClient) {
     console.log('Is production environment : ' + environment.production);
+    this.apiUrl = window.location.origin + "/"
+    console.log('Origin : ' + this.apiUrl);
   }
 
   public getAllUser() {
-    return this.http.get<User[]>(environment.apiUrl.concat('user'));
+    return this.http.get<User[]>(this.apiUrl.concat('user'));
   }
 
   public addUser(user: any) {
-    return this.http.post(environment.apiUrl.concat('user'), user);
+    return this.http.post(this.apiUrl.concat('user'), user);
   }
 
   removeUser(users: User[]) {
@@ -33,6 +37,6 @@ export class UserService {
       }),
       body: deleteBody
     };
-    return this.http.delete(environment.apiUrl.concat('user'), options);
+    return this.http.delete(this.apiUrl.concat('user'), options);
   }
 }
