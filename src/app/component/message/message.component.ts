@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { MessageService } from '../../service/message/message.service';
-import { Message } from '../../schema/message';
-import { UserService } from '../../service/user/user.service';
-import { ServerService } from '../../service/server/server.service';
-import { ToastrService } from 'ngx-toastr';
-import { Server } from 'src/app/schema/server';
-import { User } from 'src/app/schema/user';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, FormControl} from '@angular/forms';
+import {MessageService} from '../../service/message/message.service';
+import {Message} from '../../schema/message';
+import {UserService} from '../../service/user/user.service';
+import {ServerService} from '../../service/server/server.service';
+import {ToastrService} from 'ngx-toastr';
+import {Server} from 'src/app/schema/server';
+import {User} from 'src/app/schema/user';
 
 @Component({
   selector: 'app-message',
@@ -51,10 +51,10 @@ export class MessageComponent implements OnInit {
     this.messageService.sendMessage(this.sendMessageForm.value).subscribe(
       data => {
         this.toaster.success('Message sent successfully', 'Success');
-        // console.log(data);
+        console.log(data);
       }, error => {
         this.toaster.error('Message not sent', 'Error');
-        // console.log(error);
+        console.log(error);
       });
   }
 }
