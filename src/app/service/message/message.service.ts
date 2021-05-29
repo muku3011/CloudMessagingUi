@@ -11,11 +11,11 @@ export class MessageService {
 
   constructor(private http: HttpClient) {
     console.log('Is production environment : ' + environment.production);
-    this.apiUrl = window.location.origin + "/"
+    this.apiUrl = window.location.origin
     console.log('Origin : ' + this.apiUrl);
   }
 
   public sendMessage(message: any) {
-    return this.http.post(this.apiUrl.concat('message'), message);
+    return this.http.post(this.apiUrl.concat('/message'), message);
   }
 }

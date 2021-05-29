@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
-import { User } from 'src/app/schema/user';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {environment} from '../../../environments/environment';
+import {User} from 'src/app/schema/user';
 
 @Injectable({
   providedIn: 'root'
@@ -12,16 +12,16 @@ export class UserService {
 
   constructor(private http: HttpClient) {
     console.log('Is production environment : ' + environment.production);
-    this.apiUrl = window.location.origin + "/"
+    this.apiUrl = window.location.origin
     console.log('Origin : ' + this.apiUrl);
   }
 
   public getAllUser() {
-    return this.http.get<User[]>(this.apiUrl.concat('user'));
+    return this.http.get<User[]>(this.apiUrl.concat('/user'));
   }
 
   public addUser(user: any) {
-    return this.http.post(this.apiUrl.concat('user'), user);
+    return this.http.post(this.apiUrl.concat('/user'), user);
   }
 
   removeUser(users: User[]) {
@@ -37,6 +37,6 @@ export class UserService {
       }),
       body: deleteBody
     };
-    return this.http.delete(this.apiUrl.concat('user'), options);
+    return this.http.delete(this.apiUrl.concat('/user'), options);
   }
 }
