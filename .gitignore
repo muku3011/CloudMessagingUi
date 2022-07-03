@@ -9,7 +9,6 @@
 /dist
 /.angular
 *.jar
-package-lock.json
 
 # profiling files
 chrome-profiler-events.json
