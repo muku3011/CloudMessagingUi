@@ -6,7 +6,6 @@ import { ServerTableComponent } from './server-table/server-table.component';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-configuration',
   templateUrl: './server.component.html',
   styleUrls: ['./server.component.scss'],
 })
@@ -33,14 +32,19 @@ export class ServerComponent implements OnInit {
   }
 
   addServer() {
-    this.serverService.addServerApi(this.addServerDetailsForm.value).subscribe(data => {
-      this.serverTableComponent.serverDataSource.connect();
-      this.serverTableComponent.getAllServer();
-      this.toaster.success('Server added successfully', 'Success');
-      // console.log(data);
-    }, error => {
-      this.toaster.error('Server not added', 'Error');
-      // console.log(error);
+    this.serverService.addServerApi(this.addServerDetailsForm.getRawValue()).subscribe(
+      {
+      error: (error) => {
+        this.toaster.error('Server not added', 'Error');
+        console.log(error);
+      },
+      next: (data) => {
+        this.serverTableComponent.serverDataSource.connect();
+        this.serverTableComponent.getAllServer();
+        this.toaster.success('Server added successfully', 'Success');
+        console.log(data);
+      }
     });
   }
+
 }
